@@ -43,7 +43,8 @@ const Schooner = struct {
         //
         // Please change this so that it sets a 0 scale to 1
         // instead.
-        if (my_scale == 0) @compileError("Scale 1:0 is not valid!");
+        // if (my_scale == 0) @compileError("Scale 1:0 is not valid!");
+        if (my_scale == 0) my_scale = 1;
 
         self.scale = my_scale;
         self.hull_length /= my_scale;
@@ -69,8 +70,10 @@ pub fn main() void {
     // Hey, we can't just pass this runtime variable as an
     // argument to the scaleMe() method. What would let us do
     // that?
-    var scale: u32 = undefined;
+    // comptime enforces that we can pass this in at comptime as long as it is known during comptime
+    comptime var scale: u32 = undefined;
 
+    // we define scale here so we can access it during comptime
     scale = 32; // 1:32 scale
 
     minnow.scaleMe(scale);
@@ -94,13 +97,13 @@ pub fn main() void {
 //
 //    A) You're already done!
 //    B) You would suffer a mental divide-by-zero error.
-//    C) You would construct a singularity and destroy the
+//    X) You would construct a singularity and destroy the
 //       planet.
 //
 // And how about a model in the scale of 0:1?
 //
 //    A) You're already done!
-//    B) You'd arrange nothing carefully into the form of the
+//    X) You'd arrange nothing carefully into the form of the
 //       original nothing but infinitely larger.
 //    C) You would construct a singularity and destroy the
 //       planet.

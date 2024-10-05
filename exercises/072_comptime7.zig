@@ -14,6 +14,7 @@
 // You haven't taken off that wizard hat yet, have you?
 //
 const print = @import("std").debug.print;
+const std = @import("std");
 
 pub fn main() void {
     // Here is a string containing a series of arithmetic
@@ -35,11 +36,12 @@ pub fn main() void {
     // at compile time.
     //
     // Please fix this to loop once per "instruction":
-    ??? (i < instructions.len) : (???) {
+    inline while (i < instructions.len) : (i += 3) {
 
         // This gets the digit from the "instruction". Can you
         // figure out why we subtract '0' from it?
         const digit = instructions[i + 1] - '0';
+        // std.debug.print("{d}", .{digit});
 
         // This 'switch' statement contains the actual work done
         // at runtime. At first, this doesn't seem exciting...
