@@ -37,6 +37,7 @@
 const print = @import("std").debug.print;
 
 const WeirdContainer = struct {
+    // many-item pointer, so we need to keep track of the len
     data: [*]const u8,
     length: usize,
 };
@@ -60,7 +61,9 @@ pub fn main() void {
     // length... You've actually solved this problem before!
     //
     // Here's a big hint: do you remember how to take a slice?
-    const printable = ???;
+    const printable = foo.data[0..foo.length];
+    // is this a overflow?
+    // const printable = foo.data[0..foo.length+1];
 
     print("{s}\n", .{printable});
 }

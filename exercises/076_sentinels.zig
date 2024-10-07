@@ -82,7 +82,8 @@ fn printSequence(my_seq: anytype) void {
             print("Array:", .{});
 
             // Loop through the items in my_seq.
-            for (???) |s| {
+            // looping through array items
+            for (my_seq) |s| {
                 print("{}", .{s});
             }
         },
@@ -94,7 +95,8 @@ fn printSequence(my_seq: anytype) void {
             // Loop through the items in my_seq until we hit the
             // sentinel value.
             var i: usize = 0;
-            while (??? != my_sentinel) {
+            // while the cur item is not the sentinel value
+            while (my_seq[i] != my_sentinel) {
                 print("{}", .{my_seq[i]});
                 i += 1;
             }
